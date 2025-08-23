@@ -17,7 +17,14 @@ return nextPeriod.toLocaleDateString();
 
 function ovulationDate(startDate, cycleLength){
   let ovulationDay = startDate + (cycleLength - 14);
-return ovulationDay.toLocaleDateString();
+return ovulationDay;
+}
+
+function fertileWindow(startDate, cycleLength){
+	let ovulationDate = startDate + (cycleLength - 14);
+	start = ovulationDate - 2
+	end = ovulation_date + 2
+return start, end
 }
 
 
@@ -31,4 +38,10 @@ console.log(dateCollection(nextPeriod1, nextPeriod2))
 
 let ovulationDate1 = prompt("When was your Period Start Date: ")
 let ovulationDate2 = prompt("What is your Cycle Length: ")
-console.log(OvulationDate(ovulationDate1, ovulationDate2))
+console.log(ovulationDate(ovulationDate1, ovulationDate2))
+
+let fertileWindow1 = prompt("When was your Period Start Date: ")
+let fertileWindow2 = prompt("What is your Cycle Length: ")
+console.log(fertileWindow(fertileWindow1, fertileWindow2))
+
+
