@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 import calendar
 
+
 def date_collection(month_name, day_number):
 	if type(month_name) != str or type(day_number) != int:
 		raise ValueError("Invalid Data Type")
@@ -8,8 +9,8 @@ def date_collection(month_name, day_number):
 	if day_number <= 0:
 		raise ValueError("Zero's and negative numbers are not allowed")
 		
-	months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-	month_name = month_name.strip().capitalize()
+	months = list(calendar.month_name)[1:]
+	month_name = month_name.capitalize()
 	if month_name not in months:
 		raise ValueError("Invalid Month")
 		
@@ -45,10 +46,18 @@ def ovulation_date(start_date, cycle_length):
 	return ovulation_date.day
 	
 def fertile_window(start_date, cycle_length):
+	if type(start_date) != int or type(cycle_length) != int:
+		raise ValueError("Invalid Data Type")
+	
+	if start_date <= 0 or cycle_length <= 0:
+		raise ValueError("Zero's and negative numbers are not allowed")
+
 	start_date = datetime.today().replace(day=start_date)
 	ovulation_date = start_date + timedelta(days=(cycle_length - 14))
 	
-	fertile_window = ovulation_date - timedelta(days=2), ovulation_date + timedelta(days=2)
+	start = ovulation_date - timedelta(days=2)
+	end = ovulation_date + timedelta(days=2)
+	return start, end
     
     
     

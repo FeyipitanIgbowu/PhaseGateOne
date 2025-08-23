@@ -60,4 +60,22 @@ class TestForOvulationDate(unittest.TestCase):
 		response = menstural_cycle.ovulation_date(1, 27)
 		self.assertEqual(response, 14)
 
+class TestForFertileWindow(unittest.TestCase):
+	def test_for_invalid_data_type_for_cycle_length(self):
+		self.assertRaises(ValueError,menstural_cycle.fertile_window,20 , "Feyi")
+	
+	def test_for_invalid_data_type_for_start_date(self):
+		self.assertRaises(ValueError,menstural_cycle.fertile_window, "Feyi", 1)
+
+	def test_for_zero_error(self):
+		self.assertRaises(ValueError,menstural_cycle.fertile_window,0 , 0)
+		
+	def test_for_negative_input(self):
+		self.assertRaises(ValueError,menstural_cycle.fertile_window, -1 , -5)
+	
+	def test_that_function_works(self):
+		start, end = menstural_cycle.fertile_window(1, 28)
+		expected = (13, 17)
+		self.assertEqual((start, end), expected)
+
 	
